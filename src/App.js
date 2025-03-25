@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import './App.css';
+import Todo from './components/todo';  // Certifique-se que o nome do arquivo começa com maiúscula
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -9,20 +10,11 @@ function App() {
   ]);
 
   return (
-    <div className="App">
+    <div className="app">
       <h1> Lista de tarefas </h1>
       <div className="todo-list">
-        {todos.map((todo) => (  // Correção aqui
-          <div className="todo" key={todo.id}> {/* Adicionado key={todo.id} */}
-            <div className="content">
-              <p>{todo.text}</p>
-              <p className="category">{todo.category}</p>
-            </div>
-            <div>
-              <button>Completar</button>
-              <button>X</button>
-            </div>
-          </div>
+        {todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} /> 
         ))}
       </div>
     </div>
