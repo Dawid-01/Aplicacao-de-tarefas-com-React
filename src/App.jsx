@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Todo from './components/todo';  // Certifique-se que o nome do arquivo começa com maiúscula
 import "./App.css";
+import TodoForm from './components/TodoForm'; // Certifique-se que o nome do arquivo começa com maiúscula
 
 function App() {
   const [todos, setTodos] = useState([
@@ -8,6 +9,8 @@ function App() {
     { id: 2, text: 'Learn React', category: "estudos", isCompleted: false},
     { id: 3, text: 'Learn React', category: "pessoal", isCompleted: false},
   ]);
+
+  
 
   return (
     <div className="app">
@@ -17,6 +20,7 @@ function App() {
           <Todo key={todo.id} todo={todo} /> 
         ))}
       </div>
+      <TodoForm/>
     </div>
   );
 }
