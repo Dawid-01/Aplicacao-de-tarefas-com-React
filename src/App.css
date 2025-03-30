@@ -127,6 +127,24 @@ button {
   background-color: #e53935;
 }
 
+.filter,
+.search {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #9b9b9b;
+}
+
+.filter-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.filter-options div {
+  flex : 1 1 auto;
+}
+
 @media (max-width: 500px) {
   .app {
     max-width: 100%;
