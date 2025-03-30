@@ -6,7 +6,6 @@ const search = ({search, setSearch}) => {
             placeholder="Pesquise uma tarefa" 
             value={search} 
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Pesquise uma tarefa"
         />
     </div>;
 }
