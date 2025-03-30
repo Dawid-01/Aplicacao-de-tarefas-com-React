@@ -14,15 +14,57 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  /* overflow: hidden; REMOVIDO */
+  position: relative;
 }
 
+/* Fundo com esferas circulares */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 80%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+body::before {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation: float 6s infinite alternate ease-in-out;
+}
+
+body::after {
+  width: 200px;
+  height: 200px;
+  bottom: 15%;
+  right: 15%;
+  animation: float 7s infinite alternate ease-in-out;
+}
+
+/* Animação flutuante */
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+
+/* Estilização do container principal */
 .app {
   max-width: 90%;
   width: 600px;
   background-color: #fff;
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  /* position: relative; REMOVIDO */
+  z-index: 1;
+  backdrop-filter: blur(5px);
 }
 
 h1 {
@@ -35,6 +77,7 @@ h2 {
   color: #4a004a;
 }
 
+/* Formulário de tarefas */
 .todo-form {
   display: flex;
   flex-direction: column;
@@ -49,13 +92,14 @@ h2 {
   border: 1px solid #5a0060;
   font-size: 16px;
   background-color: #f9f9f9;
-  transition: border 0.3s;
+  transition: border 0.3s, transform 0.2s;
 }
 
 .todo-form input:focus, 
 .todo-form select:focus {
   border-color: #a305c6;
   outline: none;
+  transform: scale(1.03);
 }
 
 .todo-form .submit-but {
@@ -66,15 +110,17 @@ h2 {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
   font-size: 16px;
   margin-top: 10px;
 }
 
 .todo-form .submit-but:hover {
   background-color: #5a0060;
+  transform: scale(1.05);
 }
 
+/* Lista de tarefas */
 .todo-list {
   margin-top: 20px;
 }
@@ -88,6 +134,11 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.2s;
+}
+
+.todo:hover {
+  transform: scale(1.02);
 }
 
 .todo .content {
@@ -101,20 +152,26 @@ h2 {
   font-weight: bold;
 }
 
+/* Botões */
 button {
   padding: 8px 12px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.2s, background 0.3s;
   font-size: 14px;
   margin-right: 5px;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 .complete {
   background-color: #4caf50;
   color: white;
 }
+
 .complete:hover {
   background-color: #45a049;
 }
@@ -123,10 +180,12 @@ button {
   background-color: #f44336;
   color: white;
 }
+
 .remove:hover {
   background-color: #e53935;
 }
 
+/* Filtros e pesquisa */
 .filter,
 .search {
   margin-top: 20px;
@@ -137,17 +196,28 @@ button {
 
 .filter-options {
   display: flex;
+  flex-wrap: wrap; /* Permite que os itens se ajustem */
   justify-content: space-between;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .filter-options div {
-  flex : 1 1 auto;
+  flex: 1 1 100%; /* Faz os filtros ocuparem a largura total */
+  min-width: 150px;
 }
 
+.filter-options select {
+  width: 100%;
+}
+
+/* Responsividade */
 @media (max-width: 500px) {
   .app {
     max-width: 100%;
     padding: 20px;
+  }
+  .filter-options {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
